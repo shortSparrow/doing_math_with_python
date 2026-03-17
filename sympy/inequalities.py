@@ -37,6 +37,15 @@ def solve_universal(inequalities, x):
   solve_univariate_inequality(inequalities, x, relational=False)
 
 
+def general_solve(inequalities, x):
+  if inequalities.is_polynomial():
+    return solve_polynomial(inequalities)
+
+  if inequalities.is_rational_function():
+    return solve_rational(inequalities)
+  
+  return solve_univariate_inequality(inequalities, x)
+
 
 x = Symbol('x')
 
@@ -49,4 +58,4 @@ print(solve_rational(((x-1)/(x+2)) > 0))
 
 # універсальні нерівності
 ineq_obj = sin(x) - 0.6 > 0
-print(solve_univariate_inequality(ineq_obj, x, relational=False))
+print(solve_universal(ineq_obj, x))
